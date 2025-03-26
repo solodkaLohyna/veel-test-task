@@ -128,7 +128,7 @@ export const Main = () => {
     return (
       <div
         key={task.id}
-        className="flex justify-between items-center w-full shadow-md p-3 rounded-md bg-[#fcf5f8]"
+        className="flex justify-between items-center w-full shadow-md p-3 rounded-md"
       >
         {isEditing && currentTaskId === task.id ? (
           <Input
@@ -194,19 +194,19 @@ export const Main = () => {
   });
 
   return (
-    <div className=" h-full container mx-auto">
-      <div className="overflow-auto h-[90vh] flex gap-3 flex-col shadow-md rounded p-5 z-0 ">
+    <div className="mt-2 container mx-auto bg-white rounded-xl">
+      <div className="overflow-auto h-[90vh] flex justify-between gap-3 flex-col shadow-md rounded-xl p-5 z-0 ">
         {mapTasks}
-        <hr className="border-gray-200 border-[1.5px] border-dashed  rounded" />
+        <hr className="border-gray-200 border-[1.5px] border-dashed" />
         {isClicked ? (
           <div className="flex justify-between">
             <Input
               className="w-1/2 p-3"
               value={text}
               onChange={(e) => {
-                  if (e.target.value.startsWith(" ")) {
-                    return;
-                  }
+                if (e.target.value.startsWith(" ")) {
+                  return;
+                }
                 setText(e.target.value);
               }}
               onKeyDown={(e) => handleKeyDown(e)}
@@ -216,14 +216,14 @@ export const Main = () => {
               <Button size="icon" onClick={handleConfirmTask}>
                 <CircleCheckBig />
               </Button>
-              <Button onClick={handleCancelTask}>
+              <Button size="icon" onClick={handleCancelTask}>
                 <CircleX size={48} />
               </Button>
             </div>
           </div>
         ) : (
-          <Button className="shadow-md" onClick={() => setIsClicked(true)}>
-            <BookmarkPlus size={52} />
+          <Button className="shadow-md h-12" onClick={() => setIsClicked(true)}>
+            <BookmarkPlus className="shrink-0 size-8"/>
           </Button>
         )}
       </div>
