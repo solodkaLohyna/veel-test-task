@@ -194,11 +194,11 @@ export const Main = () => {
   });
 
   return (
-    <div className="mt-2 container mx-auto bg-white rounded-xl">
+    <div className="mt-2 container mx-auto bg-white rounded-xl relative">
       <div className="overflow-auto h-[90vh] flex justify-between gap-3 flex-col shadow-md rounded-xl p-5 z-0 ">
         {mapTasks}
-        <hr className="border-gray-200 border-[1.5px] border-dashed" />
-        {isClicked ? (
+        {/* <hr className="border-gray-200 border-[1.5px] border-dashed" /> */}
+        {isClicked && (
           <div className="flex justify-between">
             <Input
               className="w-1/2 p-3"
@@ -212,7 +212,7 @@ export const Main = () => {
               onKeyDown={(e) => handleKeyDown(e)}
               autoFocus
             />
-            <div className="flex space-x-3 items-center">
+            <div className="flex space-x-3 items-center pr-3">
               <Button size="icon" onClick={handleConfirmTask}>
                 <CircleCheckBig />
               </Button>
@@ -221,11 +221,12 @@ export const Main = () => {
               </Button>
             </div>
           </div>
-        ) : (
-          <Button className="shadow-md h-12" onClick={() => setIsClicked(true)}>
-            <BookmarkPlus className="shrink-0 size-8"/>
-          </Button>
         )}
+      </div>
+      <div className="absolute top-0 right-[-40px]">
+        <Button className="rounded-none rounded-tr-[10px] rounded-br-[10px] h-12 shadow-none bg-[white] hover:bg-white " onClick={() => setIsClicked(true)}>
+          <BookmarkPlus color="black"className="shrink-0 size-8" />
+        </Button>
       </div>
     </div>
   );
